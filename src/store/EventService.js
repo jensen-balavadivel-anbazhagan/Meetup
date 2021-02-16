@@ -6,9 +6,7 @@ export default {
   }, 
   mutations: {
     showEvents(state, eventList) {
-      console.log("in service" + eventList);
       state.events = eventList
-      console.log( state.events);
   }
   },
   actions: {
