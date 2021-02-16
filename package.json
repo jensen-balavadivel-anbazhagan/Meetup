@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "http-server /app/dist/",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "start": "npm run serve",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "http-server": "^0.12.3",
     "vue": "^3.0.0",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
