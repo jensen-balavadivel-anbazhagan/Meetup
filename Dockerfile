@@ -1,18 +1,18 @@
-FROM node:lts-alpine
 
-# install simple http server for serving static content
-RUN npm install -g http-server
+FROM node:lts-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
 
-# install project dependencies
 RUN npm install
 
 COPY . .
-# build app for production with minification
-RUN npm run build
 
+RUN npm run build
+# nu hamnar appens filer i dist-mappen
+# alltså /app/dist inuti IMAGE
+
+# http-server använder port 8080
 EXPOSE 8080
 CMD [ "http-server", "dist" ]
