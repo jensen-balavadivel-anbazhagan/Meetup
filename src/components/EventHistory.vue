@@ -1,6 +1,6 @@
 <template>
   <div class="events" >
-    <div class="aboutEvent" @click="goTo(event.id)">
+    <div class="aboutEvent" >
       <h4 style="color: grey">{{ event.When }} </h4>
       <h3>{{ event.Title }}</h3>
       <h3>Where : {{ event.Location }}</h3>
