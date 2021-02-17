@@ -7,7 +7,7 @@
       <img :src="event.Img" alt="bild" />
     </div>
     <div>
-      <button class="addBtn" @click="addToCard(event)">Sign up</button>
+      <button class="reviewBtn" @click="review(event)">Write Review</button>
     </div>
   </div>
 </template>
@@ -19,10 +19,8 @@ export default {
   },
  
   methods: {
-    goTo(id) {
-      this.$router.push(`/EventInfo/${id}`);
-    },
-    addToCard(event) {
+    
+    review(event) {
       console.log(event);
     },
   },
@@ -39,13 +37,14 @@ export default {
   float: left;
   width: 240px;
   color: #3d2f27;
+  max-height: 10%;
 }
 .events img {
   width: 200px;
   height: 160px;
 }
-.addBtn {
-     box-sizing: border-box;
+.reviewBtn {
+      box-sizing: border-box;
     margin: 16px 0px 0px;
     min-width: 0px;
     appearance: none;
@@ -64,13 +63,13 @@ export default {
     background-color: var(--theme-ui-colors-peach,#F65858);
     border-color: var(--theme-ui-colors-peach,#F65858);
 }
-.addBtn:hover {
+.reviewBtn:hover {
   background: #3d2f27;
   color: #ffffff;
   transition: 0.7s;
   cursor: pointer;
 }
-.addBtn span {
+.reviewBtn span {
   float: left;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="background-color: #f3e4e1;">
     <div class="wrapper">
       <div class="search-wrapper">
         <input
@@ -11,7 +11,7 @@
         />
       </div>
     </div>
-    <div v-if="!filteredList || !filteredList.length">
+    <div  v-if="!filteredList || !filteredList.length" >
       <h2 style="color: red">No Events available</h2>
     </div>
     <div v-else>
@@ -60,7 +60,8 @@ export default {
   padding: 5px;
   flex-direction: row;
   justify-content: center;
-  color: #3d2f27;
+ background-color: #f3e4e1;
+
 }
 .wrapper h1 {
   margin-left: 20%;

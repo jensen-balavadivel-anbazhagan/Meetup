@@ -80,20 +80,25 @@ img {
 }
 
 .addBtn {
-  display: block;
-  text-decoration: none;
-  background: #705546;
-  color: #eeeeee;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 15px;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  transition: 0.7s;
-  letter-spacing: 1px;
-  width: 180px;
-  margin-left: 30%;
-  align-self: center;
+     box-sizing: border-box;
+    margin: 16px 0px 0px;
+    min-width: 0px;
+    width:180px;
+    appearance: none;
+    display: inline-block;
+    text-align: center;
+    line-height: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    border-width: 0px;
+    border-style: initial;
+    border-image: initial;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--theme-ui-colors-white,#FFFFFF);
+    fill: var(--theme-ui-colors-white,#FFFFFF);
+    background-color: var(--theme-ui-colors-peach,#F65858);
+    border-color: var(--theme-ui-colors-peach,#F65858);
 }
 .addBtn:hover {
   background: #3d2f27;
