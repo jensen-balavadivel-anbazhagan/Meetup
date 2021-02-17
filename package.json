@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    
+    "start": "http-server /app/dist/",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "start": "npm run serve",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
