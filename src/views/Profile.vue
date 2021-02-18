@@ -37,13 +37,7 @@ export default {
 
   mounted() {
     if (Object.keys(this.user).length != 0) {
-      let promise = new Promise((resolve) => {
-        resolve(this.getUser(this.user.emailId));
-      });
-      promise.then(() => {
-        this.getUserEventHistory(this.user);
-      });
-     
+     this.getUser(this.user.emailId);
     }
   },
   computed: {

@@ -7,7 +7,7 @@
         <h2>{{ eventInfo.When }} kr</h2>
         <h3>Description:</h3>
         <p>{{ eventInfo.Description }}</p>
-      <button class="addBtn" @click="addToCard(event)">Sign up</button>
+      <button class="addBtn" @click="addToProfile(eventInfo.id)">Sign up</button>
       </article>
 
       
@@ -18,6 +18,9 @@
 <script>
 export default {
   computed: {
+    user() {
+      return this.$store.state.userService.user;
+    },
     events() {
       return  this.$store.state.eventService.events
     },
@@ -26,7 +29,8 @@ export default {
         Title : this.infoChosen ? this.infoChosen.Title : 'Error',
         When : this.infoChosen ? this.infoChosen.When : 'Yet to be decided',
         Description : this.infoChosen ? this.infoChosen.Description : 'No description available',
-        Img : this.infoChosen ? this.infoChosen.Img : 'No img available'
+        Img : this.infoChosen ? this.infoChosen.Img : 'No img available',
+        id : this.infoChosen ? this.infoChosen.id : '',
       }
       return chosenEvent;
     },
@@ -39,14 +43,41 @@ export default {
       }
     },
   methods: {
-    addToCard(event) {
-      this.cart.push({
-        id: event.id,
-        Title: event.Title,
-        Price: event.Description,
-        Type: event.Location,
-        Img: event.Img
-      });
+   addToProfile(eventId) {
+     if(Object.keys(this.user).length == 0) {
+     this.$confirm({
+         auth: false,
+         message: "You must Log in to Sign up for the event.Do you want to Sign in?",
+         button: {
+           no: 'Cancel',
+           yes: 'Yes'
+         },
+         callback: confirm => {
+           if(confirm == true) {
+             this.$store.state.userService.selectedEventId = eventId;
+             this.$router.push(`/profile`);
+           } 
+         }
+       })
+       
+     } else {
+        this.$store.state.userService.selectedEventId = eventId;
+       let filteredEvents = this.user.events.filter( events =>{
+          return eventId == events;
+        });
+        if (filteredEvents.length == 0) {
+        this.$store.dispatch("addEventToUser", eventId);
+         this.$router.push(`/profile`);
+        } else {
+          this.$confirm({
+         auth: false,
+         message: "Event is already signed up for the user",
+         button: {
+           no: 'Ok'
+         }
+       })
+      }
+     }
     },
   },
 };

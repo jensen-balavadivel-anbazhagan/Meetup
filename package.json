@@ -14,6 +14,7 @@
     "core-js": "^3.6.5",
     "http-server": "^0.12.3",
     "vue": "^2.6.11",
+    "vue-confirm-dialog": "^1.0.2",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },

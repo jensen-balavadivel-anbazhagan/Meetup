@@ -35,4 +35,30 @@ describe('EventInfo.vue', () => {
         expect(actual).toBeTruthy();
     })
 
+    it('Should call addToProfile method when Sign up button is clicked', async () => {
+        const addToProfile = jest.spyOn(EventInfo.methods, 'addToProfile').mockReturnValue(Promise.resolve());;
+        const wrapper = shallowMount(EventInfo, {
+            
+            computed: {
+                user() {
+                  return  {"id":1,"name":"Bala","emailId":"bala@gmail.com","events":[2,3]};
+                }
+              },
+            propsData: {
+                event: {
+                    "id": 1,
+                    "Title": "Gothenburg Toastmasters - English-speaking club",
+                    "Description": "Struggling with public-speaking anxiety? Looking to develop leadership skills? Want to ?dvance your career?Then why not visit Gothenburg Toastmasters?We would love to see you at our next meeting.",
+                    "When": "Mar 8, 2021 6:30 PM - 8:30 PM",
+                    "Location": "Online",
+                    "reviews" : "",
+                    "Img": "https://secure.meetupstatic.com/photos/event/b/5/c/e/highres_488206542.jpeg"
+                }
+            },
+        })
+
+        await wrapper.find('.addBtn').trigger('click')
+        expect(addToProfile).toHaveBeenCalled;
+    })
+
 }) 

@@ -10,7 +10,7 @@
       </div>
      
     </header>
-
+     <vue-confirm-dialog></vue-confirm-dialog>
   <router-view :events="events" />
   </div>
 </template>

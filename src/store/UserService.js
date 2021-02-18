@@ -4,15 +4,29 @@ const config = require('../assets/config.json');
 export default {
   state: {
     user: {},
-    eventHistory: []
+    eventHistory: [],
+    selectedEventId: ""
   },
   mutations: {
     addUser(state, userData) {
       state.user = userData;
+        let filteredEvents = state.user.events.filter( events =>{
+          return state.selectedEventId == events;
+        });
+      if(state.selectedEventId != null && state.selectedEventId != 'undefined' && state.selectedEventId != "" && filteredEvents.length == 0) {
+       this.dispatch('addEventToUser', state.selectedEventId);
+       }
+       this.dispatch('getUserEventHistory',  state.user);
     },
     getUser(state, userData) {
-
       state.user = userData;
+      let filteredEvents = state.user.events.filter( events =>{
+        return state.selectedEventId == events;
+      });
+    if(state.selectedEventId != null && state.selectedEventId != 'undefined' && state.selectedEventId != "" && filteredEvents.length == 0) {
+     this.dispatch('addEventToUser', state.selectedEventId);
+     }
+     this.dispatch('getUserEventHistory',  state.user);
     },
 
     addUserEventHistory(state, data) {
@@ -30,7 +44,7 @@ export default {
 
       let resData;
       //get the user data first
-      return axios.get(config.dbURl, {
+     return axios.get(config.dbURl, {
 
         headers: {
           "secret-key": config.token,
@@ -61,7 +75,6 @@ export default {
               res => {
                 if (res.data.success == true) {
                   ctx.commit("addUser", newUser);
-                  this.dispatch('getUserEventHistory', newUser);
                 }
 
               }).catch(e => {
@@ -70,11 +83,12 @@ export default {
             //If user exists already then just log in the user
           } else {
             ctx.commit("addUser", filteredList[0]);
-            this.dispatch('getUserEventHistory', filteredList[0]);
           }
         }).catch(e => {
           console.log(e);
         });
+       
+       
     },
 
 
@@ -90,10 +104,8 @@ export default {
           let filteredList = resData.filter((userD) => {
             return userD.emailId.toLowerCase() == email.toLowerCase();
           });
-          //If user does not exists then add the user first
-          if (filteredList.length == 0) {
+         
             ctx.commit("getUser", filteredList[0]);
-          }
         }
       });
     },
@@ -116,6 +128,44 @@ export default {
         }).catch(e => {
           console.log(e);
         });
+    },
+
+    async addEventToUser( ctx, eventId) {
+      let user = ctx.state.user;
+      if (user != null && user != 'undefined') {
+        let eventToAdd = parseInt(eventId);
+        return axios.get(config.dbURl, {
+          headers: {
+            "secret-key": config.token,
+          },
+        }).then(
+          response => {
+            response.data.users.filter(userData =>{
+              return userData.emailId == user.emailId;
+            }).map(foundUser => {
+              foundUser.events.push(eventToAdd);
+              return foundUser;
+
+            });
+            return axios.put(config.dbURl, response.data, {
+              headers: {
+                "secret-key": config.token,
+                "versioning": false
+              },
+            }).then(
+              res => {
+                if (res.data.success == true) {
+                  this.dispatch('getUser', user.emailId);
+                }
+
+              }).catch(e => {
+                console.log(e);
+              });
+          }).catch(e => {
+            console.log(e);
+          });
+      }
     }
+
   }
 }

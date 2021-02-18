@@ -7,7 +7,7 @@
       <img :src="event.Img" alt="bild" />
     </div>
     <div>
-      <button class="addBtn" @click="addToCard(event)">Sign up</button>
+      <button class="addBtn" @click="addToProfile(event.id)">Sign up</button>
     </div>
   </div>
 </template>
@@ -17,13 +17,53 @@ export default {
   props: {
     event: Object,
   },
+
+   computed: {
+    user() {
+      return this.$store.state.userService.user;
+    }
+   },
  
   methods: {
     goTo(id) {
-      this.$router.push(`/EventInfo/${id}`);
+      this.$router.push(`/eventInfo/${id}`);
     },
-    addToCard(event) {
-      console.log(event);
+    addToProfile(eventId) {
+      
+     if(Object.keys(this.user).length == 0) {
+     this.$confirm({
+         auth: false,
+         message: "You must Log in to Sign up for the event.Do you want to Sign in?",
+         button: {
+           no: 'Cancel',
+           yes: 'Yes'
+         },
+         callback: confirm => {
+           if(confirm == true) {
+             this.$store.state.userService.selectedEventId = eventId;
+             this.$router.push(`/profile`);
+           } 
+         }
+       })
+       
+     } else {
+        this.$store.state.userService.selectedEventId = eventId;
+       let filteredEvents = this.user.events.filter( events =>{
+          return eventId == events;
+        });
+        if (filteredEvents.length == 0) {
+        this.$store.dispatch("addEventToUser", eventId);
+         this.$router.push(`/profile`);
+        } else {
+          this.$confirm({
+         auth: false,
+         message: "Event is already signed up for the user",
+         button: {
+           no: 'Ok'
+         }
+       })
+      }
+     }
     },
   },
 };

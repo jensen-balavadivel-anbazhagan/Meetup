@@ -9,7 +9,7 @@ describe('AllEvents.vue', () => {
                 event: {
                     "id": 1,
                     "Title": "Gothenburg Toastmasters - English-speaking club",
-                    "Description": "Struggling with public-speaking anxiety? Looking to develop leadership skills? Want to àdvance your career?Then why not visit Gothenburg Toastmasters?We would love to see you at our next meeting.",
+                    "Description": "Struggling with public-speaking anxiety? Looking to develop leadership skills? Want to �dvance your career?Then why not visit Gothenburg Toastmasters?We would love to see you at our next meeting.",
                     "When": "Mar 8, 2021 6:30 PM - 8:30 PM",
                     "Location": "Online",
                     "reviews" : "",
@@ -34,7 +34,7 @@ describe('AllEvents.vue', () => {
                 event: {
                     "id": 1,
                     "Title": "Gothenburg Toastmasters - English-speaking club",
-                    "Description": "Struggling with public-speaking anxiety? Looking to develop leadership skills? Want to àdvance your career?Then why not visit Gothenburg Toastmasters?We would love to see you at our next meeting.",
+                    "Description": "Struggling with public-speaking anxiety? Looking to develop leadership skills? Want to �dvance your career?Then why not visit Gothenburg Toastmasters?We would love to see you at our next meeting.",
                     "When": "Mar 8, 2021 6:30 PM - 8:30 PM",
                     "Location": "Online",
                     "reviews" : "",
@@ -58,7 +58,7 @@ describe('AllEvents.vue', () => {
                 event: {
                     "id": 1,
                     "Title": "Gothenburg Toastmasters - English-speaking club",
-                    "Description": "Struggling with public-speaking anxiety? Looking to develop leadership skills? Want to àdvance your career?Then why not visit Gothenburg Toastmasters?We would love to see you at our next meeting.",
+                    "Description": "Struggling with public-speaking anxiety? Looking to develop leadership skills? Want to �dvance your career?Then why not visit Gothenburg Toastmasters?We would love to see you at our next meeting.",
                     "When": "Mar 8, 2021 6:30 PM - 8:30 PM",
                     "Location": "Online",
                     "reviews" : "",
@@ -69,7 +69,33 @@ describe('AllEvents.vue', () => {
             router
         })
 
-        await wrapper.find('.goToEvent').trigger('click')
-        expect(wrapper.vm.$route.path).toBe('/EventInfo/1')
+        await wrapper.find('.aboutEvent').trigger('click')
+        expect(wrapper.vm.$route.path).toBe('/eventInfo/1')
+    })
+    
+    it('Should call addToProfile method when Sign up button is clicked', async () => {
+        const addToProfile = jest.spyOn(AllEvents.methods, 'addToProfile').mockReturnValue(Promise.resolve());;
+        const wrapper = shallowMount(AllEvents, {
+            
+            computed: {
+                user() {
+                  return  {"id":1,"name":"Bala","emailId":"bala@gmail.com","events":[2,3]};
+                }
+              },
+            propsData: {
+                event: {
+                    "id": 1,
+                    "Title": "Gothenburg Toastmasters - English-speaking club",
+                    "Description": "Struggling with public-speaking anxiety? Looking to develop leadership skills? Want to �dvance your career?Then why not visit Gothenburg Toastmasters?We would love to see you at our next meeting.",
+                    "When": "Mar 8, 2021 6:30 PM - 8:30 PM",
+                    "Location": "Online",
+                    "reviews" : "",
+                    "Img": "https://secure.meetupstatic.com/photos/event/b/5/c/e/highres_488206542.jpeg"
+                }
+            },
+        })
+
+        await wrapper.find('.addBtn').trigger('click')
+        expect(addToProfile).toHaveBeenCalled;
     })
 })
