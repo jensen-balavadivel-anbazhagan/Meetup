@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueRouter from 'vue-router'
 import AllEvents from '@/components/AllEvents.vue'
+
 describe('AllEvents.vue', () => {
 
     it('should display title on all events when mounted', () => {

@@ -36,6 +36,12 @@ export default {
           event
         })
       });
+    },
+
+    clearUserData(state) {
+      state.user= {};
+      state.eventHistory = []
+      state.selectedEventId =  "";
     }
   },
   actions: {
@@ -165,7 +171,12 @@ export default {
             console.log(e);
           });
       }
-    }
+    },
+
+    async logOffUser(ctx) {
+            ctx.commit("clearUserData");
+    },
+
 
   }
 }

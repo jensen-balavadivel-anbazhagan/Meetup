@@ -1,13 +1,15 @@
 <template>
   <div class="events" >
     <div class="aboutEvent" >
-      <h4 style="color: grey">{{ event.When }} </h4>
+     <h4 style="color: grey"><i class="fa fa-calendar"/> {{ eventDate }} </h4> 
+        <h4 style="color: grey"><i class="fas fa-clock"/> {{ event.Time }} </h4>
       <h3>{{ event.Title }}</h3>
-      <h3>Where : {{ event.Location }}</h3>
+      <h3><i class="fa fa-map-marker"/> {{ event.Location }}</h3>
       <img :src="event.Img" alt="bild" />
     </div>
     <div>
-      <button class="reviewBtn" @click="review(event)">Write Review</button>
+      <button v-if="isPastEvent" class="reviewBtn" @click="review(event)">Write Review</button>
+      <button v-else class="reviewBtn" @click="joinEvent()">Join Event</button>
     </div>
   </div>
 </template>
@@ -17,11 +19,41 @@ export default {
   props: {
     event: Object,
   },
+ computed: {
+   eventDate() {
+       const monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const date = new Date(this.event.When);
+            const month = monthArray[date.getMonth()];           
+            const day = date.getDate();
+            const year = date.getFullYear();
+            return day + ' ' + month + ' ' + year;
+    },
+    isPastEvent() {
+            const currentDate = Date.now();
+            const eventDate = Date.parse(this.event.When);
+            const timeDiff = currentDate-eventDate;
+            if(timeDiff < 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+ },
  
+   
   methods: {
     
     review(event) {
-      console.log(event);
+           this.$router.push(`/newReview/${event.id}`);
+    },
+    joinEvent() {
+      this.$confirm({
+         auth: false,
+         message: "Not Implemented yet",
+         button: {
+           no: 'Ok'
+         }
+       })
     },
   },
 };

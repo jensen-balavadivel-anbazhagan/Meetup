@@ -11,12 +11,22 @@
         />
       </div>
     </div>
+   <div class="events"> 
+     <h1 class = "old_history">Upcoming Events</h1>
     <div  v-if="!filteredList || !filteredList.length" >
-      <h2 style="color: red">No Events available</h2>
+      <h2 style="color: red">No Upcoming Events available</h2>
     </div>
     <div v-else>
       <AllEvents v-for="event in filteredList" :key="event.id" :event="event" />
     </div>
+     <h1 class = "old_history">Past Events</h1>
+    <div  v-if="!filteredPastList || !filteredPastList.length" >
+      <h2 style="color: red">No Past Events available</h2>
+    </div>
+    <div v-else>
+      <AllEvents v-for="pastEvent in filteredPastList" :key="pastEvent.id" :event="pastEvent" />
+    </div>
+   </div>
   </section>
 </template>
 
@@ -29,6 +39,7 @@ export default {
   data: () => ({
     search: "",
     filteredList: {},
+    filteredPastList: {},
   }),
   components: {
     AllEvents,
@@ -40,10 +51,19 @@ export default {
         this.search == null ||
         this.search == ""
       ) {
-        this.filteredList = this.events;
+        this.filteredList = this.events.filter(eventItem => {
+        return (Date.now() - Date.parse(eventItem.When)) <= 0;
+      });
+      this.filteredPastList = this.events.filter(eventItem => {
+        return (Date.now() - Date.parse(eventItem.When)) > 0;
+      });
+
       } else {
         this.filteredList = this.events.filter((event) => {
-          return event.Title.toLowerCase().includes(this.search.toLowerCase());
+          return event.Title.toLowerCase().includes(this.search.toLowerCase()) && (Date.now() - Date.parse(event.When)) <= 0;
+        });
+         this.filteredPastList = this.events.filter((event) => {
+          return event.Title.toLowerCase().includes(this.search.toLowerCase()) && (Date.now() - Date.parse(event.When)) > 0;
         });
       }
     },
@@ -83,5 +103,19 @@ export default {
   background: white;
   display: flex;
   border-radius: 5px;
+}
+.events {
+  display: flex;
+  flex-direction: column;
+}
+
+.events .old_history {
+  font-size: 1.4rem;
+  font-family: "PT Serif", serif;
+  font-weight: 900;
+  line-height: 120%;
+  text-align: left;
+  width: 85%;
+  margin-left: 10%;
 }
 </style>

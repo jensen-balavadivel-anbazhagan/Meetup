@@ -5,5 +5,6 @@ module.exports = {
     },
     testMatch: [
       "**/src/**/*.spec.[jt]s?(x)"
-    ]
+    ],
+    transformIgnorePatterns: ["/node_modules/(?!vue-rate-it)"],
   }

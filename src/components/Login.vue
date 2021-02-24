@@ -4,8 +4,7 @@
       <div class="text">
         <h1>Welcome to Meetup!</h1>
         <p>
-          By creating an account below, you can view and review your event
-          history.
+          By Signing up/Logging in below, you can view and review your events
         </p>
       </div>
       <span
