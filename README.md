@@ -21,7 +21,9 @@ Meetup is a web application where the user will be able to login/sign up and vie
 
 The Login page is used for both login and sign up. The user is created newly in the database if not already present during the login. 
 
-The user will be able to sign up for a new event or write a review for the attended events only when logged in. Hence will be redirected to the login page whne trying to sign up for an event without loggin in. Below are the level ups made:
+The user will be able to sign up for a new event or write a review for the attended events only when logged in. Hence will be redirected to the login page whne trying to sign up for an event without loggin in. 
+
+**Below are the level ups made:**
 
 **API/ database :** the app uses Jsonbin.io for processing the backend data.
 
@@ -30,6 +32,8 @@ The user will be able to sign up for a new event or write a review for the atten
 **Acceptance tests :** Test cases include tests to cover the navigation of the application on the event of certain actions
 
 **Environment:** The database access url and the secret key for the backend access are stored and used seperatly from the config.json file instead of having them directly in the code.
+
+**Filtering:** Users can search/filter for the event using the Title of the event in the Events screen
 
 
 ### Reflection on the course content
