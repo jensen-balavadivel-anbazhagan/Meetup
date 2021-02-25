@@ -1,30 +1,20 @@
-# meetup
+# MeetUp
 
 ## Author
-```
 Balavadivel Anbazhagan
-```
 
 ### Github URL
-```
 https://github.com/jensen-balavadivel-anbazhagan/Meetup
-```
 
 ### Publishing Service used
-```
 Heroku
-```
 
 ### Published URL
-```
 https://meetup-bala.herokuapp.com/
-```
 
 ### Backend service used
-```
 JSONbin.io is used as a backend service where the DB data is rendered as JSON object. Axios calls are used to fetch/update the data from the backend.
 
-```
 
 ### Application information
 Meetup is a web application where the user will be able to login/sign up and view all the available events happening. He/she will be able to sign up for any uncoming event, view the reviews for the past event, view all the events signed by them and write new reviews for the attended events.
@@ -43,12 +33,11 @@ The user will be able to sign up for a new event or write a review for the atten
 
 
 ### Reflection on the course content
-```
+
 This project is helpful in understanding the overall web development, starting from the requirement analysis till the deployment. It helps in widening our knowledge regarding test case writing and also to have followed coding standards where the sensitive informations such as the db secrets are kept encapsulated from the code.
 The CI/CD process is practised by writing a Dockerfile which holds all the information about how the project is supposed to be build and be deployed in any Cloud service available. This project since being deployed in Heroku server I have created heroku.yml file which holds the information about the Docker file which needs to be fetched in order to build and deploy the project. Though we have not covered the full CI/CD project it is a right start where we get the motivation to explore more about the process.
 
 
-```
 ### Heroku deployment process
 
 * Create a Docker file with the scripts for building and deploying the   application.
