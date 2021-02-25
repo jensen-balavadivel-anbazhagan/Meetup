@@ -136,6 +136,7 @@ export default {
 .newReview {
   display: flex;
   flex-direction: column;
+   padding: 5px;
 }
 
 .newReview .ratingDiv {
@@ -151,7 +152,7 @@ export default {
 .newReview .ratingDiv .ratings {
   font-size: 25px;
   align-items: center;
-  padding-top: 2%;
+  padding-top: 1%;
   margin-left: 10%;
 }
 
@@ -169,7 +170,8 @@ export default {
 
 .newReview .reviewText textarea {
   width: 100%;
-  min-height: 13rem;
+  min-height: 10rem;
+  max-height: 13rem;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.2px;
   line-height: 1.4rem;

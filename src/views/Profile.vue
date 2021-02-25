@@ -4,33 +4,54 @@
     <div v-else>
       <br />
       <div class="profile">
-       <div class = "user"> <img class="portrait" src="../assets/user.png" alt />
-        <h1 class="name">{{ user.name }}</h1></div>
+        <div class="user">
+          <img class="portrait" src="../assets/user.png" alt />
+          <h1 class="name">{{ user.name }}</h1>
+        </div>
         <p class="email">{{ user.emailId }}</p>
       </div>
       <div class="events">
-      <h1 class="old_history">Upcoming Events</h1>
-      <div v-if="!eventHistory || !eventHistory.length">
-        <h2 style="color: red">No Upcoming Events available</h2>
-      </div>
-      <div v-else>
-        <EventHistory
-          v-for="item in eventHistory"
-          :key="item.event.id"
-          :event="item.event"
-        />
-      </div>
-      <h1 class="old_history">Past Events</h1>
-      <div v-if="!pastEventHistory || !pastEventHistory.length">
-        <h2 style="color: red">No Past Events available</h2>
-      </div>
-      <div v-else>
-        <EventHistory
-          v-for="pastItem in pastEventHistory"
-          :key="pastItem.event.id"
-          :event="pastItem.event"
-        />
-      </div>
+        <div
+          style="margin-top: 5%"
+          v-if="!eventHistory || !eventHistory.length"
+        >
+          <h1 class="old_history">Upcoming Events</h1>
+          <div>
+            <h2 style="color: red">No Upcoming Events available</h2>
+          </div>
+        </div>
+
+        <div style="margin-top: 5%" v-else>
+          <h1 class="old_history">Upcoming Events</h1>
+          <div>
+            <EventHistory
+              v-for="item in eventHistory"
+              :key="item.event.id"
+              :event="item.event"
+            />
+          </div>
+        </div>
+
+        <div
+          style="margin-top: 5%"
+          v-if="!pastEventHistory || !pastEventHistory.length"
+        >
+          <h1 class="old_history">Past Events</h1>
+          <div>
+            <h2 style="color: red">No Past Events available</h2>
+          </div>
+        </div>
+
+        <div style="margin-top: 5%" v-else>
+          <h1 class="old_history">Past Events</h1>
+          <div>
+            <EventHistory
+              v-for="pastItem in pastEventHistory"
+              :key="pastItem.event.id"
+              :event="pastItem.event"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -89,6 +110,9 @@ export default {
 
 
 <style lang="scss" scoped>
+.event_history {
+  max-height: 60%;
+}
 .profile {
   display: flex;
   flex-direction: column;
@@ -113,7 +137,7 @@ export default {
 }
 
 .profile .user {
-   display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -127,7 +151,7 @@ export default {
   font-size: 1.4rem;
   font-family: "PT Serif", serif;
   font-weight: 900;
-  line-height: 120%;
+  line-height: 100%;
   text-align: left;
   width: 85%;
   margin-left: 10%;

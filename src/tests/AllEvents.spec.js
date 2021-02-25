@@ -96,7 +96,7 @@ describe('AllEvents.vue', () => {
             },
         })
 
-        await wrapper.find('.addBtn').trigger('click')
+        await wrapper.find('.disabledButton').trigger('click')
         expect(addToProfile).toHaveBeenCalled;
     })
 })

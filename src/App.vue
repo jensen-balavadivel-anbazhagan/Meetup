@@ -22,8 +22,17 @@
     <span>Login/SignUp</span>
      </div>
   </header>
+
+<div class="content">
     <vue-confirm-dialog class="confirmBtn"></vue-confirm-dialog>
     <router-view :events="events" />
+</div>
+
+     <footer>
+      <p>Follow us on: </p>
+      <img v-bind:src="socialImg" alt="socialImg" />
+    </footer>
+    
   </div>
 </template>
 
@@ -32,7 +41,8 @@ export default {
   data: () => ({
     events: {},
     imgUrl: require("@/assets/logo.png"),
-    logUrl: require("@/assets/logImg.png")
+    logUrl: require("@/assets/logImg.png"),
+    socialImg: require("@/assets/socialImg.png")
   }),
   beforeMount() {
     let promise = new Promise((resolve) => {
@@ -56,6 +66,7 @@ export default {
     },
     logout() {
       this.$store.dispatch("logOffUser");
+      this.$router.push("/login");
     },
   },
 };
@@ -83,6 +94,8 @@ header {
   text-align: center;
   width: 100%;
   grid-column-gap: 35%;
+  top: 0;
+  position: sticky;
 }
 
  .headerLogo {
@@ -164,5 +177,23 @@ header {
     position: absolute;
     top: 30px;
     text-decoration: none;
+}
+footer{
+  background-color: rgb(182, 94, 112);
+  bottom: 0;
+  position: sticky;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+footer img {
+  height: 50px;
+  width: 100px;
+}
+
+.content {
+  overflow-y: auto;
+  overflow-x: auto;
 }
 </style>

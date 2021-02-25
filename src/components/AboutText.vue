@@ -1,12 +1,12 @@
 <template>
-  <section>
+  <section class="aboutSec">
      <h1>
        Meetup is about connecting people with something in common. While the connections begin online, the real memories are made at events. Meetup events are real-life gatherings where members and organizers get together to connect, discuss, and practice activities related to their shared interests.
       </h1>
    
-    <footer>
+    <div class="imageDiv">
       <img src="../assets/Meetup.png" alt="" />
-    </footer>
+    </div>
   </section>
 </template>
 
@@ -17,6 +17,12 @@ export default {
 </script>
 
 <style scoped>
+.aboutSec {
+   overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 5%;
+}
+
 .bold {
   -webkit-text-stroke: medium;
 }
@@ -25,8 +31,8 @@ p {
   text-align: justify;
 }
 
-/*aligning footer in th middle*/
-footer {
+/*aligning imageDiv in th middle*/
+.imageDiv {
   flex-direction: column;
   display: flex;
   justify-content: center;
@@ -59,5 +65,14 @@ h3 {
   margin: 0;
   padding: 0;
   font-size: 0.8rem;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .aboutSec {
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 25%;
+}
 }
 </style>

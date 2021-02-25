@@ -113,11 +113,14 @@ export default {
 
 .background {
   background: transparent;
+    overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 3%;
+
 }
 .overlay {
   height: 85%;
   left: 17px;
-  top: 82px;
   background: #f3e4e1;
   color: #2f2926;
   display: flex;
@@ -126,11 +129,12 @@ export default {
 }
 .text,
 .inputs {
-  height: 15rem;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-height: 80%;
 
   h1 {
     font-size: 2rem;
@@ -139,7 +143,6 @@ export default {
     font-family: "PT Serif", serif;
     line-height: 120%;
     font-weight: 900;
-    margin-bottom: 1rem;
   }
   p {
     width: 19rem;
