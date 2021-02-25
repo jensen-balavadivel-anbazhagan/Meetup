@@ -27,7 +27,6 @@ JSONbin.io is used as a backend service where the DB data is rendered as JSON ob
 ```
 
 ### Application information
-```
 Meetup is a web application where the user will be able to login/sign up and view all the available events happening. He/she will be able to sign up for any uncoming event, view the reviews for the past event, view all the events signed by them and write new reviews for the attended events.
 
 The Login page is used for both login and sign up. The user is created newly in the database if not already present during the login. 
@@ -42,7 +41,7 @@ The user will be able to sign up for a new event or write a review for the atten
 
 **Environment:** The database access url and the secret key for the backend access are stored and used seperatly from the config.json file instead of having them directly in the code.
 
-```
+
 ### Reflection on the course content
 ```
 This project is helpful in understanding the overall web development, starting from the requirement analysis till the deployment. It helps in widening our knowledge regarding test case writing and also to have followed coding standards where the sensitive informations such as the db secrets are kept encapsulated from the code.
@@ -51,7 +50,6 @@ The CI/CD process is practised by writing a Dockerfile which holds all the infor
 
 ```
 ### Heroku deployment process
-```
 
 * Create a Docker file with the scripts for building and deploying the   application.
 * Create a heroku.yml file with scripts to fetch the scripts from Docker file.
