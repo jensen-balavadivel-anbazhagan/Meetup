@@ -17,7 +17,7 @@ JSONbin.io is used as a backend service where the DB data is rendered as JSON ob
 
 
 ### Application information
-Meetup is a web application where the user will be able to login/sign up and view all the available events happening. He/she will be able to sign up for any uncoming event, view the reviews for the past event, view all the events signed by them and write new reviews for the attended events.
+Meetup is a web application where the user will be able to login/sign up and view all the available events happening. He/she will be able to sign up for any upcoming event, view the reviews for the past event, view all the events signed by them and write new reviews for the attended events.
 
 The Login page is used for both login and sign up. The user is created newly in the database if not already present during the login. 
 
